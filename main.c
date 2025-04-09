@@ -20,19 +20,9 @@ uint16_t ADC_leer(uint8_t canal) {
 	return ADC;
 }
 
-uint16_t ADC_leer_suavizado(uint8_t canal) {
-	uint32_t suma = 0;
-	for (uint8_t i = 0; i < MUESTRAS; i++) {
-		suma += ADC_leer(canal);
-		_delay_ms(1);
-	}
-	return suma / MUESTRAS;
-}
-
 int main() {
 	PWM_init();
 	ADC_init();
-	uint16_t ancho_pulso_anterior = 1500;
 
 	while(1) {
 		uint16_t valor_adc = ADC_leer(0);
